@@ -22,7 +22,7 @@ With the dataset containing many features to choose from, I narrowed down the re
     The data used to train this model comes from the 2020 SHED survey which includes specific questions related to COVID-19. For example, the survey asks respondents how they feel about precautions that their employer is taking to prevent the spread of COVID-19. While it is possible that a respondent's answer to that question could be a predictor of whether or not they have applied for SNAP benefits, this question is specific to this survey. Factors included in the model such as education, employment status, household size, race etc., are more easily obtained and would be more useful for predicting food insecurity with future datasets. 
 
 ### Key Variables
-
+- **n** : 4165
 - **Target**: Applied for SNAP
 
     The question in the survey asks respondents: 
@@ -61,8 +61,32 @@ With the dataset containing many features to choose from, I narrowed down the re
 
 ## Model Selection/Tuning
 
-## Important Features
+- Train test split
 
+    I reserved 20% of the data as a test set to measure the performance of the models. 
+    
+    With only a little over 10% of the observations having applied for SNAP benefits, to handle the class imbalance, the proportion of the minority class is preserved between the train and test sets. 
+
+- F1 score
+
+    I chose to use the F-score to measure the performance of each model because it is a balance between precision and recall and because of the previously mentioned class imbalance in the data. 
+
+| Model         | Precision     | Recall       | F1-Score     | 
+| ------------- | ------------- |------------- |------------- |
+| Decision Tree | 0.3723  | 0.3804 | 0.3763 | 
+| Random Forest (no tuning) | 0.6944  | 0.2717 | 0.3906 | 
+| Random Forest (grid search CV) | 0.4265  | 0.6304 | 0.5088 | 
+| Gradient Boost Classifier (no tuning)| 0.6226  | 0.3587 | 0.4552 | 
+| Gradient Boost Classifier (grid search CV)| 0.775  | 0.3370 | 0.4697 | 
+
+
+**35% improvement from the base model (decision tree) to the grid search random forest model**
+
+
+![alt text](images/gb_bosstingstages.png "Title")
+
+## Important Features
+![alt text](images/rf_feature_importance.png "Title")
 
 
 _____________________________________________________________________
